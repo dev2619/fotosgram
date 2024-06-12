@@ -1,0 +1,30 @@
+<div class="post">
+  <ion-item lines="none">
+    <ion-avatar slot="start">
+      <img src="/assets/avatars/{{post.user?.avatar}}" />
+    </ion-avatar>
+    <ion-label>
+      <h3>{{post.user?.name}}</h3>
+      <h5>{{post.user?.email}}</h5>
+    </ion-label>
+  </ion-item>
+  <swiper-container pagination="true">
+    <swiper-slide class="image-slide" [style]="img1 | domSanitizer">
+    </swiper-slide>
+    <swiper-slide class="image-slide" style="background-image: url(/assets/perro-2.jpg);">
+    </swiper-slide>
+    <swiper-slide class="image-slide" style="background-image: url(/assets/perro-3.jpg);">
+    </swiper-slide>
+  </swiper-container>
+
+  <ion-item lines="none">
+    <ion-icon slot="start" name="heart-outline"></ion-icon>
+    <ion-icon slot="end" name="bookmark"></ion-icon>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label text-wrap>
+      {{post.message}}
+    </ion-label>
+  </ion-item>
+</div>

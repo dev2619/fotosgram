@@ -1,0 +1,53 @@
+.mainSlide,
+.mainSlide ion-slide {
+    width: 100%;
+    height: 100%;
+}
+
+img {
+    width: 120px;
+}
+
+.pick-avatar {
+    width: 80px;
+    opacity: 0.3;
+}
+
+.pick-avatar-selected {
+    transition: opacity 0.5s linear;
+    opacity: 1 !important;
+}
+
+.swiper-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-login {
+    width: 100%;
+}
+
+.center-element {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-sing-up {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ion-input.ion-invalid.ion-touched {
+    label {
+        --color: #red;
+    }
+    border-color: red;
+}
