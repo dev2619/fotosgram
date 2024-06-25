@@ -11,7 +11,7 @@ export const UserGuard: CanActivateFn = async (
   const router = inject(Router);
   const isValidToken = await userService.validToken();
   if (isValidToken) {
-    return true; 
+    return true;
   } else {
     router.navigate(['/']);
     return false;

@@ -6,11 +6,12 @@ import { IonicModule } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { PipesModule } from '../pipes/pipes.module';
 import { AvatarSelectorComponent } from './avatar-selector/avatar-selector.component';
+import { MapComponent } from './map/map.component';
 
 
 
 @NgModule({
-  declarations: [PostComponent, PostsComponent, AvatarSelectorComponent],
+  declarations: [PostComponent, PostsComponent, AvatarSelectorComponent, MapComponent],
   exports: [PostsComponent, AvatarSelectorComponent],
   imports: [
     CommonModule,

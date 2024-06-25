@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { environment } from 'src/environments/environment';
 import { User } from '../interfaces/interfaces';
+import { NavController } from '@ionic/angular';
 const URL = environment.url;
 @Injectable({
   providedIn: 'root'
@@ -11,16 +12,16 @@ export class UserService {
 
   token: string = 'null';
   private user: User = {};
-  constructor(private storage: Storage, private http: HttpClient) {
+  constructor(private storage: Storage, private http: HttpClient, private navCtrl: NavController) {
     this.storage.create();
   }
 
   logIn(email: string, password: string) {
     const data = { email, password };
     return new Promise(resolve => {
-      this.http.post(`${URL}/user/login`, data).subscribe((response: any) => {
+      this.http.post(`${URL}/user/login`, data).subscribe(async (response: any) => {
         if (response.ok) {
-          this.saveToken(response.token);
+          await this.saveToken(response.token);
           resolve(true);
         } else {
           this.token = 'null';
@@ -29,6 +30,13 @@ export class UserService {
         }
       });
     });
+  }
+
+  logOut() {
+    this.token = '';
+    this.user = {};
+    this.storage.clear();
+    this.navCtrl.navigateRoot('/', { animated: true });
   }
 
   getUser() {
@@ -41,14 +49,15 @@ export class UserService {
   async saveToken(token: string) {
     this.token = token;
     await this.storage.set('token', this.token);
+    await this.validToken();
   }
 
   register(user: User) {
     return new Promise(resolve => {
       this.http.post(`${URL}/user/create`, user)
-        .subscribe((response: any) => {
+        .subscribe(async (response: any) => {
           if (response.ok) {
-            this.saveToken(response.token);
+            await this.saveToken(response.token);
             resolve(true);
           } else {
             this.token = 'null';

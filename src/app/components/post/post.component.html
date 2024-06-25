@@ -8,14 +8,20 @@
       <h5>{{post.user?.email}}</h5>
     </ion-label>
   </ion-item>
-  <swiper-container pagination="true">
-    <swiper-slide class="image-slide" [style]="img1 | domSanitizer">
+
+
+  <swiper-container pagination="true" *ngIf="post.img!.length > 1">
+    <swiper-slide *ngFor="let img of post.img" class="image-slide" [style]="(img|image:post.user!._id!) | domSanitizer">
     </swiper-slide>
-    <swiper-slide class="image-slide" style="background-image: url(/assets/perro-2.jpg);">
-    </swiper-slide>
-    <swiper-slide class="image-slide" style="background-image: url(/assets/perro-3.jpg);">
+
+  </swiper-container>
+
+  <swiper-container *ngIf="post.img!.length === 1">
+    <swiper-slide class="image-slide" [style]="(post.img![0]|image:post.user!._id!) | domSanitizer">
     </swiper-slide>
   </swiper-container>
+
+  <app-map [cords]="post.cords!" *ngIf="post.cords!"></app-map>
 
   <ion-item lines="none">
     <ion-icon slot="start" name="heart-outline"></ion-icon>

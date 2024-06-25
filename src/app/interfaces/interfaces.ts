@@ -12,7 +12,7 @@ export interface PostElement {
     img?: string[];
     cords?: string;
     user?: User;
-    created?: string; 
+    created?: string;
 }
 
 export interface User {
@@ -21,4 +21,11 @@ export interface User {
     email?: string;
     avatar?: string;
     password?: string;
+}
+
+export interface UserPhoto {
+    filepath: any;
+    webviewPath: string;
+    data: string;
+    name: string;
 }

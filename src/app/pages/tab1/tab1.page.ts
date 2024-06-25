@@ -17,6 +17,10 @@ export class Tab1Page implements OnInit {
 
   ngOnInit() {
     this.onIonInfinite();
+    this.postService.newPost
+      .subscribe(post => {
+        this.posts.unshift(post);
+      })
   }
   onIonInfinite(event?: any, pull: boolean = false) {
     this.postService.getPosts(pull).subscribe(resp => {
